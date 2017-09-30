@@ -10,10 +10,20 @@ import UIKit
 
 class TweetsViewController: UIViewController {
 
+    var tweets: [Tweet] = []
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TwitterClient.sharedInstance?.homeTimeline()
+        tableView.dataSource = self
+        
+        TwitterClient.sharedInstance?.homeTimeline( success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }, failure: { (error: Error) in
+            
+        })
         // Do any additional setup after loading the view.
     }
 
@@ -36,4 +46,21 @@ class TweetsViewController: UIViewController {
     }
     */
 
+}
+
+extension TweetsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweets.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell
+        cell.tweet = tweets[indexPath.row]
+        return cell
+    }
 }

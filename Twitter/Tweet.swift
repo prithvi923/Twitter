@@ -9,5 +9,18 @@
 import UIKit
 
 class Tweet: NSObject {
-
+    
+    var text: String?
+    
+    init(_ tweet: NSDictionary) {
+        text = tweet["text"] as? String
+    }
+    
+    class func tweets(_ tweetsDictionary: [NSDictionary]) -> [Tweet] {
+        var tweets = [Tweet]()
+        for tweet in tweetsDictionary {
+            tweets.append(Tweet(tweet))
+        }
+        return tweets
+    }
 }

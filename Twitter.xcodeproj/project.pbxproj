@@ -17,6 +17,7 @@
 		DCD2BE751F7E1D1000FDADD0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE741F7E1D1000FDADD0 /* Tweet.swift */; };
 		DCD2BE771F7E204200FDADD0 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE761F7E204200FDADD0 /* TwitterClient.swift */; };
 		DCD2BE791F7F342400FDADD0 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE781F7F342400FDADD0 /* TweetsViewController.swift */; };
+		DCD2BE7C1F7F41D400FDADD0 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE7B1F7F41D400FDADD0 /* TweetTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		DCD2BE741F7E1D1000FDADD0 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		DCD2BE761F7E204200FDADD0 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		DCD2BE781F7F342400FDADD0 /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
+		DCD2BE7B1F7F41D400FDADD0 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				DCD2BE5B1F7DEAB100FDADD0 /* AppDelegate.swift */,
 				DCD2BE6F1F7E1CB300FDADD0 /* API */,
+				DCD2BE7A1F7F41B800FDADD0 /* Views */,
 				DCD2BE701F7E1CBC00FDADD0 /* View Controllers */,
 				DCD2BE711F7E1CCA00FDADD0 /* Models */,
 				DCD2BE5F1F7DEAB100FDADD0 /* Main.storyboard */,
@@ -122,6 +125,14 @@
 				DCD2BE741F7E1D1000FDADD0 /* Tweet.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		DCD2BE7A1F7F41B800FDADD0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DCD2BE7B1F7F41D400FDADD0 /* TweetTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +273,7 @@
 				DCD2BE5C1F7DEAB100FDADD0 /* AppDelegate.swift in Sources */,
 				DCD2BE731F7E1D0600FDADD0 /* User.swift in Sources */,
 				DCD2BE751F7E1D1000FDADD0 /* Tweet.swift in Sources */,
+				DCD2BE7C1F7F41D400FDADD0 /* TweetTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,7 +32,6 @@ class TwitterClient: BDBOAuth1SessionManager {
     func logout() {
         User.current = nil
         deauthorize()
-        
         NotificationCenter.default.post(name: User.userDidLogoutNotification, object: nil)
     }
     
@@ -56,8 +55,16 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
     }
     
-    func homeTimeline() {
-        
+    func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        get("1.1/statuses/home_timeline.json",
+            parameters: nil,
+            progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                let tweetsDictionary = response as! [NSDictionary]
+                success(Tweet.tweets(tweetsDictionary))
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                failure(error)
+            })
     }
     
     func verifyCredentials(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
