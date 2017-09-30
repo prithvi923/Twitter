@@ -86,13 +86,13 @@
 		DCD2BE5A1F7DEAB100FDADD0 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				DCD2BE5B1F7DEAB100FDADD0 /* AppDelegate.swift */,
 				DCD2BE6F1F7E1CB300FDADD0 /* API */,
 				DCD2BE701F7E1CBC00FDADD0 /* View Controllers */,
 				DCD2BE711F7E1CCA00FDADD0 /* Models */,
-				DCD2BE5B1F7DEAB100FDADD0 /* AppDelegate.swift */,
 				DCD2BE5F1F7DEAB100FDADD0 /* Main.storyboard */,
-				DCD2BE621F7DEAB100FDADD0 /* Assets.xcassets */,
 				DCD2BE641F7DEAB100FDADD0 /* LaunchScreen.storyboard */,
+				DCD2BE621F7DEAB100FDADD0 /* Assets.xcassets */,
 				DCD2BE671F7DEAB100FDADD0 /* Info.plist */,
 			);
 			path = Twitter;
