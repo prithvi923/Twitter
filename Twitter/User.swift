@@ -20,7 +20,7 @@ class User: NSObject {
     init(_ user: NSDictionary) {
         name = user["name"] as? String
         screenName = user["screen_name"] as? String
-        if let profile_url = user["profile_url"] {
+        if let profile_url = user["profile_image_url_https"] {
             profileURL = URL(string: profile_url as! String)!
         }
         tagline = user["description"] as? String

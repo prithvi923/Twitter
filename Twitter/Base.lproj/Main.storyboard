@@ -117,14 +117,53 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Twitter" id="TgU-Iv-gWX">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="Fbm-mU-iDm">
-                            <connections>
-                                <action selector="logoutPressed:" destination="6qX-YL-JPD" id="k17-gH-KQc"/>
-                            </connections>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Aaa-nu-5Ew">
+                            <view key="customView" contentMode="scaleToFill" id="TZD-EK-bXf">
+                                <rect key="frame" x="16" y="5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vip-DY-Zws">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="33" id="4V0-6Z-kGa"/>
+                                            <constraint firstAttribute="height" constant="33" id="Ph1-2w-S8B"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Vip-DY-Zws" secondAttribute="bottom" id="CqT-Va-UVd"/>
+                                    <constraint firstItem="Vip-DY-Zws" firstAttribute="leading" secondItem="TZD-EK-bXf" secondAttribute="leading" id="XR5-7k-5u2"/>
+                                    <constraint firstItem="Vip-DY-Zws" firstAttribute="top" secondItem="TZD-EK-bXf" secondAttribute="top" id="ih0-8v-XX4"/>
+                                </constraints>
+                            </view>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Y7V-pA-Zac">
+                            <view key="customView" contentMode="scaleToFill" id="Q6r-fu-pZl">
+                                <rect key="frame" x="276" y="5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Compose" translatesAutoresizingMaskIntoConstraints="NO" id="wNZ-ug-Wz2">
+                                        <rect key="frame" x="50" y="0.0" width="33" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="7dK-U7-j5l"/>
+                                            <constraint firstAttribute="width" constant="33" id="cym-iX-3Kx"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="wNZ-ug-Wz2" secondAttribute="bottom" id="Gbc-c3-W3M"/>
+                                    <constraint firstAttribute="trailing" secondItem="wNZ-ug-Wz2" secondAttribute="trailing" id="aZT-gz-WxQ"/>
+                                    <constraint firstItem="wNZ-ug-Wz2" firstAttribute="top" secondItem="Q6r-fu-pZl" secondAttribute="top" id="ofz-gE-s9g"/>
+                                </constraints>
+                            </view>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Ds4-O0-KKx" id="95g-56-KEA"/>
+                        <outlet property="userImageView" destination="Vip-DY-Zws" id="PXR-EN-B5v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byW-nR-whT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -150,4 +189,7 @@
             <point key="canvasLocation" x="1287.2" y="140.77961019490255"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Compose" width="64" height="64"/>
+    </resources>
 </document>

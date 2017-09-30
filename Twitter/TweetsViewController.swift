@@ -12,6 +12,7 @@ class TweetsViewController: UIViewController {
 
     var tweets: [Tweet] = []
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var userImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,11 @@ class TweetsViewController: UIViewController {
         }, failure: { (error: Error) in
             
         })
-        // Do any additional setup after loading the view.
+        
+        userImageView.setImageWith((User.current?.profileURL)!)
+        userImageView.layer.cornerRadius = self.userImageView.frame.size.width/2
+        userImageView.clipsToBounds = true
+
     }
 
     override func didReceiveMemoryWarning() {
