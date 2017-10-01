@@ -67,6 +67,18 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
     }
     
+    func tweet(_ tweet: String, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+        post("1.1/statuses/update.json",
+            parameters: ["status" : tweet],
+            progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                let tweetDictionary = response as! NSDictionary
+                success(Tweet(tweetDictionary))
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                failure(error)
+            })
+    }
+    
     func verifyCredentials(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         get("1.1/account/verify_credentials.json",
             parameters: nil,

@@ -25,7 +25,7 @@ class TweetsViewController: UIViewController {
             self.tweets = tweets
             self.tableView.reloadData()
         }, failure: { (error: Error) in
-            
+            print("error: \(error.localizedDescription)")
         })
         
         userImageView.setImageWith((User.current?.profileURL)!)
@@ -43,6 +43,9 @@ class TweetsViewController: UIViewController {
         TwitterClient.sharedInstance?.logout()
     }
 
+    @IBAction func composePressed(_ sender: Any) {
+        
+    }
     /*
     // MARK: - Navigation
 

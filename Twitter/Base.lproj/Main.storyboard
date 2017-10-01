@@ -55,7 +55,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zsd-13-g4I" id="CZb-92-oCA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-Ve-sdf">
@@ -144,19 +144,24 @@
                                 <rect key="frame" x="276" y="5" width="83" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Compose" translatesAutoresizingMaskIntoConstraints="NO" id="wNZ-ug-Wz2">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUB-5n-MfZ">
                                         <rect key="frame" x="50" y="0.0" width="33" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="7dK-U7-j5l"/>
-                                            <constraint firstAttribute="width" constant="33" id="cym-iX-3Kx"/>
+                                            <constraint firstAttribute="width" constant="33" id="UPs-Td-8HK"/>
+                                            <constraint firstAttribute="height" constant="33" id="e6a-jj-aaI"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" title="Button" image="Compose"/>
+                                        <connections>
+                                            <action selector="composePressed:" destination="6qX-YL-JPD" eventType="touchUpInside" id="2kj-nW-sda"/>
+                                            <segue destination="mYq-ej-2tw" kind="presentation" id="E02-Rj-yp4"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="wNZ-ug-Wz2" secondAttribute="bottom" id="Gbc-c3-W3M"/>
-                                    <constraint firstAttribute="trailing" secondItem="wNZ-ug-Wz2" secondAttribute="trailing" id="aZT-gz-WxQ"/>
-                                    <constraint firstItem="wNZ-ug-Wz2" firstAttribute="top" secondItem="Q6r-fu-pZl" secondAttribute="top" id="ofz-gE-s9g"/>
+                                    <constraint firstAttribute="bottom" secondItem="UUB-5n-MfZ" secondAttribute="bottom" id="N6P-VQ-7hC"/>
+                                    <constraint firstAttribute="trailing" secondItem="UUB-5n-MfZ" secondAttribute="trailing" id="QQc-uR-VCr"/>
+                                    <constraint firstItem="UUB-5n-MfZ" firstAttribute="top" secondItem="Q6r-fu-pZl" secondAttribute="top" id="uwV-pU-5Ax"/>
                                 </constraints>
                             </view>
                         </barButtonItem>
@@ -169,6 +174,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="byW-nR-whT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2226.4000000000001" y="139.880059970015"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="kwZ-Qm-mYN">
+            <objects>
+                <viewController id="mYq-ej-2tw" customClass="ComposeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GCB-Or-p4w"/>
+                        <viewControllerLayoutGuide type="bottom" id="QTI-uo-EXj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SRM-Bz-JNc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NH5-6O-5Mi">
+                                <rect key="frame" x="0.0" y="20" width="375" height="33"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bj-0W-Kqk">
+                                        <rect key="frame" x="337" y="0.0" width="30" height="33"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="closeCompose:" destination="mYq-ej-2tw" eventType="touchUpInside" id="7PC-ZY-yko"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7Bj-0W-Kqk" secondAttribute="trailing" constant="8" id="82o-X7-CFr"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Bj-0W-Kqk" secondAttribute="bottom" id="AAK-QI-UWA"/>
+                                    <constraint firstItem="7Bj-0W-Kqk" firstAttribute="top" secondItem="NH5-6O-5Mi" secondAttribute="top" id="fZa-6n-c3c"/>
+                                    <constraint firstAttribute="height" constant="33" id="mVZ-mV-eyy"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What's happening?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="82k-mW-23F">
+                                <rect key="frame" x="16" y="61" width="343" height="163"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NH5-6O-5Mi" secondAttribute="trailing" id="Hk0-QU-8AJ"/>
+                            <constraint firstItem="NH5-6O-5Mi" firstAttribute="leading" secondItem="SRM-Bz-JNc" secondAttribute="leading" id="LaV-6Y-aVP"/>
+                            <constraint firstItem="NH5-6O-5Mi" firstAttribute="top" secondItem="GCB-Or-p4w" secondAttribute="bottom" id="NjW-ny-Kz7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="82k-mW-23F" id="gPb-ba-pQS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTf-wc-8Gp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3184.8000000000002" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iXw-zN-1wR">
