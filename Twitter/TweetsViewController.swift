@@ -56,6 +56,14 @@ class TweetsViewController: UIViewController {
         })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "tweetDetailSegue") {
+            let destVC = segue.destination as! TweetDetailViewController
+            let cell = sender as! TweetTableViewCell
+            destVC.tweet = cell.tweet
+        }
+    }
+    
 }
 
 extension TweetsViewController: UITableViewDataSource {
