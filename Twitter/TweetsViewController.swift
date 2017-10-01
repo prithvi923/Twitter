@@ -31,7 +31,10 @@ class TweetsViewController: UIViewController {
         userImageView.setImageWith((User.current?.profileURL)!)
         userImageView.layer.cornerRadius = self.userImageView.frame.size.width/2
         userImageView.clipsToBounds = true
-
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,20 +45,17 @@ class TweetsViewController: UIViewController {
     @IBAction func logoutPressed(_ sender: Any) {
         TwitterClient.sharedInstance?.logout()
     }
-
-    @IBAction func composePressed(_ sender: Any) {
-        
+    
+    func pullToRefresh(_ refreshControl: UIRefreshControl) {
+        TwitterClient.sharedInstance?.moreRecentTweets(than: tweets[0].id!, success: { (tweets: [Tweet]) in
+            self.tweets.insert(contentsOf: tweets, at: 0)
+            self.tableView.reloadData()
+            refreshControl.endRefreshing()
+        }, failure: { (error: Error) in
+            print("error: \(error.localizedDescription)")
+        })
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
 
 extension TweetsViewController: UITableViewDataSource {

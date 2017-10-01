@@ -67,6 +67,18 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
     }
     
+    func moreRecentTweets(than: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        get("1.1/statuses/home_timeline.json",
+            parameters: ["since_id": than],
+            progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                let tweetsDictionary = response as! [NSDictionary]
+                success(Tweet.tweets(tweetsDictionary))
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
     func tweet(_ tweet: String, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
         post("1.1/statuses/update.json",
             parameters: ["status" : tweet],
