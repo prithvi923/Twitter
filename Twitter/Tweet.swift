@@ -20,6 +20,7 @@ class Tweet: NSObject {
     var retweetCount: Int?
     var favorited: Bool?
     var retweeted: Bool?
+    var retweet_id: String?
     
     static var dateFormatter: DateFormatter {
         get {
@@ -55,6 +56,10 @@ class Tweet: NSObject {
             profileURL = URL(string: (user["profile_image_url_https"] as? String)!)
             username = user["name"] as? String
             screenName = user["screen_name"] as? String
+        }
+        
+        if let retweet = tweet["retweeted_status"] as? NSDictionary {
+            retweet_id = retweet["id_str"] as? String
         }
     }
     

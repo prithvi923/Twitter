@@ -43,16 +43,23 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func retweetPressed(_ sender: Any) {
         if (!tweet.retweeted!) {
-        TwitterClient.sharedInstance?.retweet(tweet, success: { () in
-            self.retweetButton.isHighlighted = true
-            self.tweet.retweetCount! += 1
-            self.retweetLabel.text = "\(self.tweet.retweetCount!)"
-        }, failure: { (error: Error) in
-            print("error: \(error.localizedDescription)")
-        })
+            TwitterClient.sharedInstance?.retweet(tweet, success: { (tweet: Tweet) in
+                self.retweetButton.isHighlighted = true
+                self.tweet.retweetCount! += 1
+                self.retweetLabel.text = "\(self.tweet.retweetCount!)"
+                self.tweet = tweet
+            }, failure: { (error: Error) in
+                print("error: \(error.localizedDescription)")
+            })
         } else {
-            // unretweet code
-            print("unretweeted")
+            TwitterClient.sharedInstance?.unretweet(tweet, success: { (tweet: Tweet) in
+                self.retweetButton.isHighlighted = false
+                self.tweet.retweetCount! -= 1
+                self.retweetLabel.text = "\(self.tweet.retweetCount!)"
+                self.tweet = tweet
+            }, failure: { (error: Error) in
+                print("error: \(error.localizedDescription)")
+            })
         }
     }
     
