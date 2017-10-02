@@ -244,7 +244,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bif-kG-2tk">
-                                <rect key="frame" x="121.5" y="250" width="32" height="32"/>
+                                <rect key="frame" x="171.5" y="250" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Nim-ai-DAg"/>
                                     <constraint firstAttribute="height" constant="32" id="jR0-XH-LWG"/>
@@ -255,7 +255,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-Tj-g3t">
-                                <rect key="frame" x="221.5" y="250" width="32" height="32"/>
+                                <rect key="frame" x="271.5" y="250" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="WKe-h4-xDD"/>
                                     <constraint firstAttribute="height" constant="32" id="cF6-f7-yBf"/>
@@ -265,10 +265,22 @@
                                     <action selector="favoritePressed:" destination="ivO-zV-hIU" eventType="touchUpInside" id="hQn-1Y-WI7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xc-QW-BrV">
+                                <rect key="frame" x="71.5" y="250" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="B85-Mw-dUM"/>
+                                    <constraint firstAttribute="height" constant="32" id="Pjt-Ho-0Sv"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Reply"/>
+                                <connections>
+                                    <segue destination="mYq-ej-2tw" kind="presentation" id="mdL-hP-DEJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="SJE-6M-3R2" firstAttribute="top" secondItem="44a-FS-9Ki" secondAttribute="bottom" constant="15" id="43v-yf-stK"/>
+                            <constraint firstItem="4xc-QW-BrV" firstAttribute="centerX" secondItem="TmC-My-OvI" secondAttribute="centerX" constant="-100" id="4nV-Rt-XOx"/>
                             <constraint firstItem="hCh-tf-AwP" firstAttribute="leading" secondItem="XO6-LK-XTA" secondAttribute="trailing" constant="5" id="8B2-Fo-anc"/>
                             <constraint firstItem="44a-FS-9Ki" firstAttribute="top" secondItem="6Fx-ER-jHk" secondAttribute="bottom" constant="24" id="8wS-0p-5KP"/>
                             <constraint firstItem="LcN-tJ-pZK" firstAttribute="leading" secondItem="wDL-za-YDl" secondAttribute="trailing" constant="5" id="EMe-oS-xaw"/>
@@ -278,16 +290,17 @@
                             <constraint firstItem="6Fx-ER-jHk" firstAttribute="top" secondItem="XkR-zI-0xD" secondAttribute="bottom" constant="12" id="NHw-04-qbf"/>
                             <constraint firstItem="6Fx-ER-jHk" firstAttribute="leading" secondItem="TmC-My-OvI" secondAttribute="leadingMargin" constant="8" id="Wmk-vL-VUU"/>
                             <constraint firstItem="GEv-Tp-ZjG" firstAttribute="leading" secondItem="6Fx-ER-jHk" secondAttribute="trailing" constant="15" id="cpY-45-uXe"/>
+                            <constraint firstItem="4xc-QW-BrV" firstAttribute="top" secondItem="hCh-tf-AwP" secondAttribute="bottom" constant="20" id="d2d-Au-vzK"/>
                             <constraint firstItem="wDL-za-YDl" firstAttribute="leading" secondItem="hCh-tf-AwP" secondAttribute="trailing" constant="10" id="el0-yq-Y84"/>
                             <constraint firstItem="XO6-LK-XTA" firstAttribute="leading" secondItem="SJE-6M-3R2" secondAttribute="leading" id="feh-ui-mdp"/>
                             <constraint firstItem="LcN-tJ-pZK" firstAttribute="centerY" secondItem="wDL-za-YDl" secondAttribute="centerY" id="hAN-vb-bip"/>
                             <constraint firstItem="44a-FS-9Ki" firstAttribute="leading" secondItem="6Fx-ER-jHk" secondAttribute="leading" id="iDF-Bw-7zo"/>
-                            <constraint firstItem="Bif-kG-2tk" firstAttribute="centerX" secondItem="TmC-My-OvI" secondAttribute="centerX" constant="-50" id="iig-z7-VZ0"/>
+                            <constraint firstItem="Bif-kG-2tk" firstAttribute="centerX" secondItem="TmC-My-OvI" secondAttribute="centerX" id="iig-z7-VZ0"/>
                             <constraint firstItem="SJE-6M-3R2" firstAttribute="leading" secondItem="44a-FS-9Ki" secondAttribute="leading" id="kop-zQ-K3C"/>
                             <constraint firstItem="Bif-kG-2tk" firstAttribute="top" secondItem="LcN-tJ-pZK" secondAttribute="bottom" constant="20" id="mjU-6c-uT1"/>
                             <constraint firstItem="hCh-tf-AwP" firstAttribute="centerY" secondItem="XO6-LK-XTA" secondAttribute="centerY" id="oQT-q5-pyp"/>
                             <constraint firstItem="XO6-LK-XTA" firstAttribute="top" secondItem="SJE-6M-3R2" secondAttribute="bottom" constant="20" id="uiK-ip-rvS"/>
-                            <constraint firstItem="Eap-Tj-g3t" firstAttribute="centerX" secondItem="TmC-My-OvI" secondAttribute="centerX" constant="50" id="urK-zs-wbU"/>
+                            <constraint firstItem="Eap-Tj-g3t" firstAttribute="centerX" secondItem="TmC-My-OvI" secondAttribute="centerX" constant="100" id="urK-zs-wbU"/>
                             <constraint firstItem="BPr-wq-vl6" firstAttribute="leading" secondItem="6Fx-ER-jHk" secondAttribute="trailing" constant="15" id="uu1-3L-lFF"/>
                             <constraint firstItem="Eap-Tj-g3t" firstAttribute="top" secondItem="LcN-tJ-pZK" secondAttribute="bottom" constant="20" id="xM7-0Q-Hsq"/>
                             <constraint firstItem="wDL-za-YDl" firstAttribute="centerY" secondItem="hCh-tf-AwP" secondAttribute="centerY" id="z2d-sO-Q76"/>
@@ -298,6 +311,7 @@
                         <outlet property="favoritesLabel" destination="wDL-za-YDl" id="A7x-W6-e6j"/>
                         <outlet property="nameLabel" destination="BPr-wq-vl6" id="gOr-L5-Fpa"/>
                         <outlet property="profileImageView" destination="6Fx-ER-jHk" id="cUy-Dh-R4I"/>
+                        <outlet property="replyButton" destination="4xc-QW-BrV" id="MEe-Re-egm"/>
                         <outlet property="retweetButton" destination="Bif-kG-2tk" id="cbf-xd-7gd"/>
                         <outlet property="retweetLabel" destination="XO6-LK-XTA" id="amH-RE-Ab9"/>
                         <outlet property="screenNameLabel" destination="GEv-Tp-ZjG" id="3oC-27-44a"/>
@@ -307,7 +321,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nji-mt-D83" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3183.1999999999998" y="-30.134932533733135"/>
+            <point key="canvasLocation" x="3180" y="-211"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="kwZ-Qm-mYN">
@@ -385,6 +399,10 @@
     <resources>
         <image name="Compose" width="64" height="64"/>
         <image name="Favorite" width="64" height="64"/>
+        <image name="Reply" width="64" height="64"/>
         <image name="Retweet" width="64" height="64"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mdL-hP-DEJ"/>
+    </inferredMetricsTieBreakers>
 </document>

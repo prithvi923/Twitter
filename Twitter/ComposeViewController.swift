@@ -11,6 +11,7 @@ import UIKit
 class ComposeViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    var replyToTweet: Tweet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +37,21 @@ class ComposeViewController: UIViewController {
     }
     
     func tweet() {
-        TwitterClient.sharedInstance?.tweet(textView.text, success: { (tweet: Tweet) in
-            self.dismiss(animated: true, completion: nil)
-        }, failure: { (error: Error) in
-            print("error: \(error.localizedDescription)")
-        })
+        let client = TwitterClient.sharedInstance
+        if let tweet = replyToTweet {
+            let completeStatus = "@\(tweet.screenName!) \(textView.text!)"
+            client?.reply(to: tweet, withStatus: completeStatus, success: {
+                self.dismiss(animated: true, completion: nil)
+            }, failure: { (error: Error) in
+                print("error: \(error.localizedDescription)")
+            })
+        } else {
+            client?.tweet(textView.text, success: { (tweet: Tweet) in
+                self.dismiss(animated: true, completion: nil)
+            }, failure: { (error: Error) in
+                print("error: \(error.localizedDescription)")
+            })
+        }
     }
 
     /*

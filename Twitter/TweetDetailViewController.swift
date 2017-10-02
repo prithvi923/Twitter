@@ -20,6 +20,7 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var replyButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,7 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func retweetPressed(_ sender: Any) {
-        TwitterClient.sharedInstance?.retweet(tweet: tweet.id!, success: { () in
+        TwitterClient.sharedInstance?.retweet(tweet, success: { () in
             self.retweetButton.isHighlighted = true
         }, failure: { (error: Error) in
             print("error: \(error.localizedDescription)")
@@ -49,11 +50,16 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func favoritePressed(_ sender: Any) {
-        TwitterClient.sharedInstance?.favorite(tweet: tweet.id!, success: { () in
+        TwitterClient.sharedInstance?.favorite(tweet, success: { () in
             self.favoriteButton.isHighlighted = true
         }, failure: { (error: Error) in
             print("error: \(error.localizedDescription)")
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! ComposeViewController
+        destVC.replyToTweet = tweet
     }
     
 

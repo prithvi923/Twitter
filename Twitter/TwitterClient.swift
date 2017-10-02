@@ -91,9 +91,9 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
     }
     
-    func favorite(tweet: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func favorite(_ tweet: Tweet, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         post("1.1/favorites/create.json",
-             parameters: ["id" : tweet],
+             parameters: ["id" : tweet.id!],
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
                 success()
@@ -102,9 +102,20 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func retweet(tweet: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
-        post("1.1/statuses/retweet/\(tweet).json",
+    func retweet(_ tweet: Tweet, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        post("1.1/statuses/retweet/\(tweet.id!).json",
              parameters: nil,
+             progress: nil,
+             success: { (task: URLSessionDataTask, response: Any?) in
+                success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func reply(to: Tweet, withStatus: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        post("1.1/statuses/update.json",
+             parameters: ["in_reply_to_status_id" : to.id, "status" : withStatus],
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
                 success()
