@@ -102,6 +102,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func unfavorite(_ tweet: Tweet, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+        post("1.1/favorites/destroy.json",
+             parameters: ["id" : tweet.id!],
+             progress: nil,
+             success: { (task: URLSessionDataTask, response: Any?) in
+                success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
     func retweet(_ tweet: Tweet, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         post("1.1/statuses/retweet/\(tweet.id!).json",
              parameters: nil,

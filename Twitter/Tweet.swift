@@ -18,6 +18,8 @@ class Tweet: NSObject {
     var id: String?
     var favoriteCount: Int?
     var retweetCount: Int?
+    var favorited: Bool?
+    var retweeted: Bool?
     
     static var dateFormatter: DateFormatter {
         get {
@@ -47,6 +49,8 @@ class Tweet: NSObject {
         id = tweet["id_str"] as? String
         favoriteCount = tweet["favorite_count"] as? Int
         retweetCount = tweet["retweet_count"] as? Int
+        favorited = tweet["favorited"] as? Bool
+        retweeted = tweet["retweeted"] as? Bool
         if let user = tweet["user"] as? NSDictionary {
             profileURL = URL(string: (user["profile_image_url_https"] as? String)!)
             username = user["name"] as? String
