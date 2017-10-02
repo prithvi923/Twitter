@@ -72,6 +72,7 @@ class TweetsViewController: UIViewController {
         if (segue.identifier == "tweetDetailSegue") {
             let destVC = segue.destination as! TweetDetailViewController
             let cell = sender as! TweetTableViewCell
+            cell.setSelected(false, animated: true)
             destVC.tweet = cell.tweet
         }
     }
