@@ -14,6 +14,7 @@ class ComposeViewController: UIViewController {
     @IBOutlet weak var characterCountLabel: UILabel!
     
     var replyToTweet: Tweet!
+    private var newTweet: Tweet!
     var characterCount: Int = 140 {
         didSet {
             characterCountLabel.text = "\(characterCount)"
@@ -57,22 +58,20 @@ class ComposeViewController: UIViewController {
             })
         } else {
             client?.tweet(textView.text, success: { (tweet: Tweet) in
-                self.dismiss(animated: true, completion: nil)
+                self.newTweet = tweet
+                self.performSegue(withIdentifier: "unwindFromComposeToTweetVC", sender: self)
             }, failure: { (error: Error) in
                 print("error: \(error.localizedDescription)")
             })
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let tweetsVC = segue.destination as? TweetsViewController {
+            tweetsVC.tweets.insert(newTweet, at: 0)
+            tweetsVC.tableView.reloadData()
+        }
     }
-    */
 
 }
 
