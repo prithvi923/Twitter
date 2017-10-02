@@ -11,7 +11,14 @@ import UIKit
 class ComposeViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var characterCountLabel: UILabel!
+    
     var replyToTweet: Tweet!
+    var characterCount: Int = 140 {
+        didSet {
+            characterCountLabel.text = "\(characterCount)"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +87,11 @@ extension ComposeViewController: UITextViewDelegate {
             textView.text = "Placeholder"
             textView.textColor = UIColor.lightGray
         }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let count = textView.text.characters.count
+        characterCount = 140 - count
     }
     
 }

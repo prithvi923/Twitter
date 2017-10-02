@@ -55,7 +55,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zsd-13-g4I" id="CZb-92-oCA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-Ve-sdf">
@@ -153,8 +153,7 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="Compose"/>
                                         <connections>
-                                            <action selector="composePressed:" destination="6qX-YL-JPD" eventType="touchUpInside" id="2kj-nW-sda"/>
-                                            <segue destination="mYq-ej-2tw" kind="presentation" id="E02-Rj-yp4"/>
+                                            <segue destination="mYq-ej-2tw" kind="presentation" id="dcQ-m2-xA5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -354,22 +353,36 @@
                                     <constraint firstAttribute="height" constant="33" id="mVZ-mV-eyy"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What's happening?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="82k-mW-23F">
-                                <rect key="frame" x="16" y="61" width="343" height="163"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdM-iz-Ljd">
+                                <rect key="frame" x="336.5" y="53" width="22.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's happening?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="82k-mW-23F">
+                                <rect key="frame" x="16" y="69" width="343" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="t8K-Oy-F5B"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="82k-mW-23F" firstAttribute="top" secondItem="qdM-iz-Ljd" secondAttribute="bottom" id="7Bj-aB-SFC"/>
+                            <constraint firstItem="qdM-iz-Ljd" firstAttribute="top" secondItem="NH5-6O-5Mi" secondAttribute="bottom" id="8oY-aK-XGB"/>
                             <constraint firstAttribute="trailing" secondItem="NH5-6O-5Mi" secondAttribute="trailing" id="Hk0-QU-8AJ"/>
                             <constraint firstItem="NH5-6O-5Mi" firstAttribute="leading" secondItem="SRM-Bz-JNc" secondAttribute="leading" id="LaV-6Y-aVP"/>
                             <constraint firstItem="NH5-6O-5Mi" firstAttribute="top" secondItem="GCB-Or-p4w" secondAttribute="bottom" id="NjW-ny-Kz7"/>
+                            <constraint firstItem="82k-mW-23F" firstAttribute="leading" secondItem="SRM-Bz-JNc" secondAttribute="leadingMargin" id="TOo-Ub-Pe3"/>
+                            <constraint firstItem="qdM-iz-Ljd" firstAttribute="trailing" secondItem="82k-mW-23F" secondAttribute="trailing" id="bgY-ey-6Ho"/>
+                            <constraint firstItem="82k-mW-23F" firstAttribute="trailing" secondItem="SRM-Bz-JNc" secondAttribute="trailingMargin" id="esN-bI-fUL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="characterCountLabel" destination="qdM-iz-Ljd" id="DZV-EE-PpS"/>
                         <outlet property="textView" destination="82k-mW-23F" id="gPb-ba-pQS"/>
                     </connections>
                 </viewController>
@@ -403,6 +416,6 @@
         <image name="Retweet" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mdL-hP-DEJ"/>
+        <segue reference="dcQ-m2-xA5"/>
     </inferredMetricsTieBreakers>
 </document>
