@@ -33,6 +33,8 @@ class ComposeViewController: UIViewController {
         tweetButton.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1.0)
         tweetButton.addTarget(self, action: #selector(tweet), for: .touchUpInside)
         textView.inputAccessoryView = tweetButton
+        
+        textView.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
