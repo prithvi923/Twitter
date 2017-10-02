@@ -111,7 +111,6 @@ extension TweetsViewController: UITableViewDelegate {
             
                 TwitterClient.sharedInstance?.olderTweets(than: tweets.last!.id!, success: { (tweets: [Tweet]) in
                     self.tweets.append(contentsOf: tweets)
-                    print(self.tweets.count)
                     self.tableView.reloadData()
                     self.loadingMoreView!.stopAnimating()
                     self.isMoreDataLoading = false

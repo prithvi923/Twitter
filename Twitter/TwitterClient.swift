@@ -69,7 +69,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func newerTweets(than: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
         get("1.1/statuses/home_timeline.json",
-            parameters: ["max_id": than],
+            parameters: ["since_id": than],
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDictionary = response as! [NSDictionary]
@@ -80,8 +80,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func olderTweets(than: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+        let thanInt = Int(than)
+        
         get("1.1/statuses/home_timeline.json",
-            parameters: ["since_id": than],
+            parameters: ["max_id": thanInt!-1],
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDictionary = response as! [NSDictionary]
