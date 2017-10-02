@@ -29,7 +29,8 @@ class ComposeViewController: UIViewController {
         
         let tweetButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
         tweetButton.setTitle("Tweet", for: .normal)
-        tweetButton.backgroundColor = .blue
+        tweetButton.setTitleColor(.white, for: .normal)
+        tweetButton.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1.0)
         tweetButton.addTarget(self, action: #selector(tweet), for: .touchUpInside)
         textView.inputAccessoryView = tweetButton
     }
