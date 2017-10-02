@@ -55,7 +55,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zsd-13-g4I" id="CZb-92-oCA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="94.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMN-Ve-sdf">
@@ -243,6 +243,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bif-kG-2tk">
+                                <rect key="frame" x="121.5" y="250" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="Nim-ai-DAg"/>
+                                    <constraint firstAttribute="height" constant="32" id="jR0-XH-LWG"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Retweet"/>
+                                <connections>
+                                    <action selector="retweetPressed:" destination="ivO-zV-hIU" eventType="touchUpInside" id="rcI-ir-lo8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-Tj-g3t">
+                                <rect key="frame" x="221.5" y="250" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="WKe-h4-xDD"/>
+                                    <constraint firstAttribute="height" constant="32" id="cF6-f7-yBf"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="Favorite"/>
+                                <connections>
+                                    <action selector="favoritePressed:" destination="ivO-zV-hIU" eventType="touchUpInside" id="hQn-1Y-WI7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -260,17 +282,23 @@
                             <constraint firstItem="XO6-LK-XTA" firstAttribute="leading" secondItem="SJE-6M-3R2" secondAttribute="leading" id="feh-ui-mdp"/>
                             <constraint firstItem="LcN-tJ-pZK" firstAttribute="centerY" secondItem="wDL-za-YDl" secondAttribute="centerY" id="hAN-vb-bip"/>
                             <constraint firstItem="44a-FS-9Ki" firstAttribute="leading" secondItem="6Fx-ER-jHk" secondAttribute="leading" id="iDF-Bw-7zo"/>
+                            <constraint firstItem="Bif-kG-2tk" firstAttribute="centerX" secondItem="TmC-My-OvI" secondAttribute="centerX" constant="-50" id="iig-z7-VZ0"/>
                             <constraint firstItem="SJE-6M-3R2" firstAttribute="leading" secondItem="44a-FS-9Ki" secondAttribute="leading" id="kop-zQ-K3C"/>
+                            <constraint firstItem="Bif-kG-2tk" firstAttribute="top" secondItem="LcN-tJ-pZK" secondAttribute="bottom" constant="20" id="mjU-6c-uT1"/>
                             <constraint firstItem="hCh-tf-AwP" firstAttribute="centerY" secondItem="XO6-LK-XTA" secondAttribute="centerY" id="oQT-q5-pyp"/>
                             <constraint firstItem="XO6-LK-XTA" firstAttribute="top" secondItem="SJE-6M-3R2" secondAttribute="bottom" constant="20" id="uiK-ip-rvS"/>
+                            <constraint firstItem="Eap-Tj-g3t" firstAttribute="centerX" secondItem="TmC-My-OvI" secondAttribute="centerX" constant="50" id="urK-zs-wbU"/>
                             <constraint firstItem="BPr-wq-vl6" firstAttribute="leading" secondItem="6Fx-ER-jHk" secondAttribute="trailing" constant="15" id="uu1-3L-lFF"/>
+                            <constraint firstItem="Eap-Tj-g3t" firstAttribute="top" secondItem="LcN-tJ-pZK" secondAttribute="bottom" constant="20" id="xM7-0Q-Hsq"/>
                             <constraint firstItem="wDL-za-YDl" firstAttribute="centerY" secondItem="hCh-tf-AwP" secondAttribute="centerY" id="z2d-sO-Q76"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="favoriteButton" destination="Eap-Tj-g3t" id="n3q-6v-tjm"/>
                         <outlet property="favoritesLabel" destination="wDL-za-YDl" id="A7x-W6-e6j"/>
                         <outlet property="nameLabel" destination="BPr-wq-vl6" id="gOr-L5-Fpa"/>
                         <outlet property="profileImageView" destination="6Fx-ER-jHk" id="cUy-Dh-R4I"/>
+                        <outlet property="retweetButton" destination="Bif-kG-2tk" id="cbf-xd-7gd"/>
                         <outlet property="retweetLabel" destination="XO6-LK-XTA" id="amH-RE-Ab9"/>
                         <outlet property="screenNameLabel" destination="GEv-Tp-ZjG" id="3oC-27-44a"/>
                         <outlet property="timestampLabel" destination="SJE-6M-3R2" id="H15-tn-ZNq"/>
@@ -356,5 +384,7 @@
     </scenes>
     <resources>
         <image name="Compose" width="64" height="64"/>
+        <image name="Favorite" width="64" height="64"/>
+        <image name="Retweet" width="64" height="64"/>
     </resources>
 </document>

@@ -41,7 +41,6 @@ class Tweet: NSObject {
     
     init(_ tweet: NSDictionary) {
         super.init()
-        print(tweet)
         text = tweet["text"] as? String
         let dateString = tweet["created_at"] as? String
         date = getDate(from: dateString!)

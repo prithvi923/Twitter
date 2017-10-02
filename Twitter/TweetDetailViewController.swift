@@ -18,6 +18,8 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,22 @@ class TweetDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func retweetPressed(_ sender: Any) {
+        TwitterClient.sharedInstance?.retweet(tweet: tweet.id!, success: { () in
+            self.retweetButton.isHighlighted = true
+        }, failure: { (error: Error) in
+            print("error: \(error.localizedDescription)")
+        })
+    }
+    
+    @IBAction func favoritePressed(_ sender: Any) {
+        TwitterClient.sharedInstance?.favorite(tweet: tweet.id!, success: { () in
+            self.favoriteButton.isHighlighted = true
+        }, failure: { (error: Error) in
+            print("error: \(error.localizedDescription)")
+        })
     }
     
 
