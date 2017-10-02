@@ -20,6 +20,7 @@
 		DCD2BE7C1F7F41D400FDADD0 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE7B1F7F41D400FDADD0 /* TweetTableViewCell.swift */; };
 		DCD2BE7E1F7F87B000FDADD0 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE7D1F7F87B000FDADD0 /* ComposeViewController.swift */; };
 		DCD2BE801F80871D00FDADD0 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE7F1F80871D00FDADD0 /* TweetDetailViewController.swift */; };
+		DCD2BE821F81F23100FDADD0 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		DCD2BE7B1F7F41D400FDADD0 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		DCD2BE7D1F7F87B000FDADD0 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		DCD2BE7F1F80871D00FDADD0 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
+		DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				DCD2BE7B1F7F41D400FDADD0 /* TweetTableViewCell.swift */,
+				DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD2BE821F81F23100FDADD0 /* InfiniteScrollActivityView.swift in Sources */,
 				DCD2BE771F7E204200FDADD0 /* TwitterClient.swift in Sources */,
 				DCD2BE6E1F7E101200FDADD0 /* LoginViewController.swift in Sources */,
 				DCD2BE801F80871D00FDADD0 /* TweetDetailViewController.swift in Sources */,
