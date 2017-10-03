@@ -116,21 +116,21 @@ class TwitterClient: BDBOAuth1SessionManager {
      TweetEngageDelegate
      */
     
-    func favorite(_ tweet: Tweet) {
+    func favorite(with: String, onSuccess: @escaping () -> ()) {
         post("1.1/favorites/create.json",
-             parameters: ["id" : tweet.id!],
+             parameters: ["id" : with],
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
-                self.tweetEngageDelegate.favorite()
+                onSuccess()
         }, failure: errorPrinter)
     }
     
-    func unfavorite(_ tweet: Tweet) {
+    func unfavorite(with: String, onSuccess: @escaping () -> ()) {
         post("1.1/favorites/destroy.json",
-             parameters: ["id" : tweet.id!],
+             parameters: ["id" : with],
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
-                self.tweetEngageDelegate.unfavorite()
+                onSuccess()
         }, failure: errorPrinter)
     }
     

@@ -13,20 +13,8 @@ extension TweetDetailViewController: TweetEngageDelegate {
     func updateEngagement() {
         self.retweetButton.isHighlighted = self.tweet.retweeted!
         self.retweetLabel.text = "\(self.tweet.retweetCount!)"
-    }
-    
-    func favorite() {
-        self.favoriteButton.isHighlighted = true
-        self.tweet.favoriteCount! += 1
+        
+        self.favoriteButton.isHighlighted = self.tweet.favorited!
         self.favoritesLabel.text = "\(self.tweet.favoriteCount!)"
-        self.tweet.favorited = true
     }
-    
-    func unfavorite() {
-        self.favoriteButton.isHighlighted = false
-        self.tweet.favoriteCount! -= 1
-        self.favoritesLabel.text = "\(self.tweet.favoriteCount!)"
-        self.tweet.favorited = false
-    }
-    
 }

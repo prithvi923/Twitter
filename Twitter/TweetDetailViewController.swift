@@ -46,11 +46,7 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func favoritePressed(_ sender: Any) {
-        if (!tweet.favorited!) {
-            TwitterClient.sharedInstance.favorite(tweet)
-        } else {
-            TwitterClient.sharedInstance.unfavorite(tweet)
-        }
+        tweet.favoriteToggle()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

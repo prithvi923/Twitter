@@ -82,6 +82,22 @@ class Tweet: NSObject {
         }
     }
     
+    func favoriteToggle() {
+        if (favorited!) {
+            TwitterClient.sharedInstance.unfavorite(with: id!, onSuccess: {
+                self.favoriteCount! -= 1
+                self.favorited = false
+                self.tweetEngageDelegate.updateEngagement()
+            })
+        } else {
+            TwitterClient.sharedInstance.favorite(with: id!, onSuccess: {
+                self.favoriteCount! += 1
+                self.favorited = true
+                self.tweetEngageDelegate.updateEngagement()
+            })
+        }
+    }
+    
     class func tweets(_ tweetsDictionary: [NSDictionary]) -> [Tweet] {
         var tweets = [Tweet]()
         for tweet in tweetsDictionary {
@@ -127,6 +143,4 @@ class Tweet: NSObject {
 
 protocol TweetEngageDelegate {
     func updateEngagement()
-    func favorite()
-    func unfavorite()
 }
