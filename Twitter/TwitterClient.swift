@@ -11,17 +11,23 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
     
-    static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "Oxs5m9Odq8TDDuuN5Rs5cYCN3", consumerSecret: "hbjBljTnrFc70j5LA0w7q94h6uVt65VCYAPht3fuNysYCkDsoy")
+    static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "Oxs5m9Odq8TDDuuN5Rs5cYCN3", consumerSecret: "hbjBljTnrFc70j5LA0w7q94h6uVt65VCYAPht3fuNysYCkDsoy")!
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error) -> ())?
+    
+    let errorPrinter: ((URLSessionDataTask?, Error) -> ()) = { (task: URLSessionDataTask?, error: Error) in
+        print("error: \(error.localizedDescription)")
+    }
+    
+    var homeDelegate: HomeTimelineDelegate!
     
     func login(success: @escaping () -> Void, failure: @escaping (Error) -> ()) {
         loginSuccess = success
         loginFailure = failure
         
-        TwitterClient.sharedInstance?.deauthorize()
-        TwitterClient.sharedInstance?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
+        TwitterClient.sharedInstance.deauthorize()
+        TwitterClient.sharedInstance.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
             let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")!
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }, failure: { (error: Error?) in
@@ -55,31 +61,30 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
     }
     
-    func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+    func homeTimeline() {
         get("1.1/statuses/home_timeline.json",
             parameters: nil,
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDictionary = response as! [NSDictionary]
-                success(Tweet.tweets(tweetsDictionary))
-            }, failure: { (task: URLSessionDataTask?, error: Error) in
-                failure(error)
-            })
+                self.homeDelegate.current(tweets: Tweet.tweets(tweetsDictionary))
+            }, failure: errorPrinter)
     }
     
-    func newerTweets(than: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+    func newerTweets(than: String, completion: @escaping () -> ()) {
         get("1.1/statuses/home_timeline.json",
             parameters: ["since_id": than],
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDictionary = response as! [NSDictionary]
-                success(Tweet.tweets(tweetsDictionary))
-        }, failure: { (task: URLSessionDataTask?, error: Error) in
-            failure(error)
-        })
+                self.homeDelegate.new(tweets: Tweet.tweets(tweetsDictionary))
+                completion()
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                completion()
+            })
     }
     
-    func olderTweets(than: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error) -> ()) {
+    func olderTweets(than: String, completion: @escaping () -> ()) {
         let thanInt = Int(than)
         
         get("1.1/statuses/home_timeline.json",
@@ -87,10 +92,11 @@ class TwitterClient: BDBOAuth1SessionManager {
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDictionary = response as! [NSDictionary]
-                success(Tweet.tweets(tweetsDictionary))
-        }, failure: { (task: URLSessionDataTask?, error: Error) in
-            failure(error)
-        })
+                self.homeDelegate.old(tweets: Tweet.tweets(tweetsDictionary))
+                completion()
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                completion()
+            })
     }
     
     func tweet(_ tweet: String, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
@@ -174,4 +180,10 @@ class TwitterClient: BDBOAuth1SessionManager {
                 failure(error)
             })
     }
+}
+
+protocol HomeTimelineDelegate {
+    func current(tweets: [Tweet])
+    func new(tweets: [Tweet])
+    func old(tweets: [Tweet])
 }
