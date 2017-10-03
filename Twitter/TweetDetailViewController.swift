@@ -32,6 +32,8 @@ class TweetDetailViewController: UIViewController {
         timestampLabel.text = tweet.detailTime()
         retweetLabel.text = "\(tweet.retweetCount!)"
         favoritesLabel.text = "\(tweet.favoriteCount!)"
+        
+        TwitterClient.sharedInstance.tweetEngageDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,45 +43,17 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func retweetPressed(_ sender: Any) {
         if (!tweet.retweeted!) {
-            TwitterClient.sharedInstance.retweet(tweet, success: { (tweet: Tweet) in
-                self.retweetButton.isHighlighted = true
-                self.tweet.retweetCount! += 1
-                self.retweetLabel.text = "\(self.tweet.retweetCount!)"
-                self.tweet = tweet
-            }, failure: { (error: Error) in
-                print("error: \(error.localizedDescription)")
-            })
+            TwitterClient.sharedInstance.retweet(tweet)
         } else {
-            TwitterClient.sharedInstance.unretweet(tweet, success: { (tweet: Tweet) in
-                self.retweetButton.isHighlighted = false
-                self.tweet.retweetCount! -= 1
-                self.retweetLabel.text = "\(self.tweet.retweetCount!)"
-                self.tweet = tweet
-            }, failure: { (error: Error) in
-                print("error: \(error.localizedDescription)")
-            })
+            TwitterClient.sharedInstance.unretweet(tweet)
         }
     }
     
     @IBAction func favoritePressed(_ sender: Any) {
         if (!tweet.favorited!) {
-            TwitterClient.sharedInstance.favorite(tweet, success: { () in
-                self.favoriteButton.isHighlighted = true
-                self.tweet.favoriteCount! += 1
-                self.favoritesLabel.text = "\(self.tweet.favoriteCount!)"
-                self.tweet.favorited = true
-            }, failure: { (error: Error) in
-                print("error: \(error.localizedDescription)")
-            })
+            TwitterClient.sharedInstance.favorite(tweet)
         } else {
-            TwitterClient.sharedInstance.unfavorite(tweet, success: { () in
-                self.favoriteButton.isHighlighted = false
-                self.tweet.favoriteCount! -= 1
-                self.favoritesLabel.text = "\(self.tweet.favoriteCount!)"
-                self.tweet.favorited = false
-            }, failure: { (error: Error) in
-                print("error: \(error.localizedDescription)")
-            })
+            TwitterClient.sharedInstance.unfavorite(tweet)
         }
     }
     

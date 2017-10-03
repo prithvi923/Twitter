@@ -22,6 +22,7 @@
 		DCD2BE801F80871D00FDADD0 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE7F1F80871D00FDADD0 /* TweetDetailViewController.swift */; };
 		DCD2BE821F81F23100FDADD0 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */; };
 		DCD2BE841F8360E100FDADD0 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE831F8360E100FDADD0 /* ProfileImageView.swift */; };
+		DCD2BE861F83644F00FDADD0 /* TweetDetailViewController+TweetEngageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE851F83644F00FDADD0 /* TweetDetailViewController+TweetEngageDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		DCD2BE7F1F80871D00FDADD0 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		DCD2BE831F8360E100FDADD0 /* ProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		DCD2BE851F83644F00FDADD0 /* TweetDetailViewController+TweetEngageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TweetDetailViewController+TweetEngageDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				DCD2BE781F7F342400FDADD0 /* TweetsViewController.swift */,
 				DCD2BE7D1F7F87B000FDADD0 /* ComposeViewController.swift */,
 				DCD2BE7F1F80871D00FDADD0 /* TweetDetailViewController.swift */,
+				DCD2BE851F83644F00FDADD0 /* TweetDetailViewController+TweetEngageDelegate.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				DCD2BE821F81F23100FDADD0 /* InfiniteScrollActivityView.swift in Sources */,
 				DCD2BE771F7E204200FDADD0 /* TwitterClient.swift in Sources */,
 				DCD2BE6E1F7E101200FDADD0 /* LoginViewController.swift in Sources */,
+				DCD2BE861F83644F00FDADD0 /* TweetDetailViewController+TweetEngageDelegate.swift in Sources */,
 				DCD2BE801F80871D00FDADD0 /* TweetDetailViewController.swift in Sources */,
 				DCD2BE791F7F342400FDADD0 /* TweetsViewController.swift in Sources */,
 				DCD2BE841F8360E100FDADD0 /* ProfileImageView.swift in Sources */,

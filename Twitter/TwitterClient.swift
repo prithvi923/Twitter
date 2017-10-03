@@ -21,6 +21,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     var homeDelegate: HomeTimelineDelegate!
+    var tweetEngageDelegate: TweetEngageDelegate!
     
     func login(success: @escaping () -> Void, failure: @escaping (Error) -> ()) {
         loginSuccess = success
@@ -111,50 +112,46 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
     }
     
-    func favorite(_ tweet: Tweet, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    /*
+     TweetEngageDelegate
+     */
+    
+    func favorite(_ tweet: Tweet) {
         post("1.1/favorites/create.json",
              parameters: ["id" : tweet.id!],
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
-                success()
-        }, failure: { (task: URLSessionDataTask?, error: Error) in
-            failure(error)
-        })
+                self.tweetEngageDelegate.favorite()
+        }, failure: errorPrinter)
     }
     
-    func unfavorite(_ tweet: Tweet, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
+    func unfavorite(_ tweet: Tweet) {
         post("1.1/favorites/destroy.json",
              parameters: ["id" : tweet.id!],
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
-                success()
-        }, failure: { (task: URLSessionDataTask?, error: Error) in
-            failure(error)
-        })
+                self.tweetEngageDelegate.unfavorite()
+        }, failure: errorPrinter)
     }
     
-    func retweet(_ tweet: Tweet, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+    func retweet(_ tweet: Tweet) {
         post("1.1/statuses/retweet/\(tweet.id!).json",
              parameters: nil,
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetDictionary = response as! NSDictionary
-                success(Tweet(tweetDictionary))
-        }, failure: { (task: URLSessionDataTask?, error: Error) in
-            failure(error)
-        })
+                self.tweetEngageDelegate.retweet(tweet: Tweet(tweetDictionary))
+        }, failure: errorPrinter)
     }
     
-    func unretweet(_ tweet: Tweet, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
+    func unretweet(_ tweet: Tweet) {
         post("1.1/statuses/unretweet/\(tweet.retweet_id!).json",
             parameters: nil,
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetDictionary = response as! NSDictionary
-                success(Tweet(tweetDictionary))
-        }, failure: { (task: URLSessionDataTask?, error: Error) in
-            failure(error)
-        })
+                self.tweetEngageDelegate.unretweet(tweet: Tweet(tweetDictionary))
+        }, failure: errorPrinter)
     }
     
     func reply(to: Tweet, withStatus: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
@@ -186,4 +183,11 @@ protocol HomeTimelineDelegate {
     func current(tweets: [Tweet])
     func new(tweets: [Tweet])
     func old(tweets: [Tweet])
+}
+
+protocol TweetEngageDelegate {
+    func retweet(tweet: Tweet)
+    func unretweet(tweet: Tweet)
+    func favorite()
+    func unfavorite()
 }
