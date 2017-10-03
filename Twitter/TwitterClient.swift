@@ -134,23 +134,23 @@ class TwitterClient: BDBOAuth1SessionManager {
         }, failure: errorPrinter)
     }
     
-    func retweet(_ tweet: Tweet) {
-        post("1.1/statuses/retweet/\(tweet.id!).json",
+    func retweet(with: String, onSuccess: @escaping (String) -> ()) {
+        post("1.1/statuses/retweet/\(with).json",
              parameters: nil,
              progress: nil,
              success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetDictionary = response as! NSDictionary
-                self.tweetEngageDelegate.retweet(tweet: Tweet(tweetDictionary))
+                let tweet = Tweet(tweetDictionary)
+                onSuccess(tweet.retweet_id!)
         }, failure: errorPrinter)
     }
     
-    func unretweet(_ tweet: Tweet) {
-        post("1.1/statuses/unretweet/\(tweet.retweet_id!).json",
+    func unretweet(with: String, onSuccess: @escaping () -> ()) {
+        post("1.1/statuses/unretweet/\(with).json",
             parameters: nil,
             progress: nil,
             success: { (task: URLSessionDataTask, response: Any?) in
-                let tweetDictionary = response as! NSDictionary
-                self.tweetEngageDelegate.unretweet(tweet: Tweet(tweetDictionary))
+                onSuccess()
         }, failure: errorPrinter)
     }
     
@@ -183,11 +183,4 @@ protocol HomeTimelineDelegate {
     func current(tweets: [Tweet])
     func new(tweets: [Tweet])
     func old(tweets: [Tweet])
-}
-
-protocol TweetEngageDelegate {
-    func retweet(tweet: Tweet)
-    func unretweet(tweet: Tweet)
-    func favorite()
-    func unfavorite()
 }

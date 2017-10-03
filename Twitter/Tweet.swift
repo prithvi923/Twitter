@@ -21,6 +21,7 @@ class Tweet: NSObject {
     var favorited: Bool?
     var retweeted: Bool?
     var retweet_id: String?
+    var tweetEngageDelegate: TweetEngageDelegate!
     
     static var dateFormatter: DateFormatter {
         get {
@@ -60,6 +61,24 @@ class Tweet: NSObject {
         
         if let retweet = tweet["retweeted_status"] as? NSDictionary {
             retweet_id = retweet["id_str"] as? String
+        }
+    }
+    
+    func retweetToggle() {
+        if (retweeted!) {
+            TwitterClient.sharedInstance.unretweet(with: retweet_id!, onSuccess: {
+                self.retweetCount! -= 1
+                self.retweet_id = nil
+                self.retweeted = false
+                self.tweetEngageDelegate.updateEngagement()
+            })
+        } else {
+            TwitterClient.sharedInstance.retweet(with: id!, onSuccess: { (retweet_id) in
+                self.retweetCount! += 1
+                self.retweet_id = retweet_id
+                self.retweeted = true
+                self.tweetEngageDelegate.updateEngagement()
+            })
         }
     }
     
@@ -104,4 +123,10 @@ class Tweet: NSObject {
     private func getDate(from: String) -> Date {
         return Tweet.dateFormatter.date(from: from)!
     }
+}
+
+protocol TweetEngageDelegate {
+    func updateEngagement()
+    func favorite()
+    func unfavorite()
 }

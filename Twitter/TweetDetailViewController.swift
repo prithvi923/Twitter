@@ -33,7 +33,7 @@ class TweetDetailViewController: UIViewController {
         retweetLabel.text = "\(tweet.retweetCount!)"
         favoritesLabel.text = "\(tweet.favoriteCount!)"
         
-        TwitterClient.sharedInstance.tweetEngageDelegate = self
+        tweet.tweetEngageDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,11 +42,7 @@ class TweetDetailViewController: UIViewController {
     }
     
     @IBAction func retweetPressed(_ sender: Any) {
-        if (!tweet.retweeted!) {
-            TwitterClient.sharedInstance.retweet(tweet)
-        } else {
-            TwitterClient.sharedInstance.unretweet(tweet)
-        }
+        tweet.retweetToggle()
     }
     
     @IBAction func favoritePressed(_ sender: Any) {

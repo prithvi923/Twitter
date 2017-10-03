@@ -9,19 +9,10 @@
 import Foundation
 
 extension TweetDetailViewController: TweetEngageDelegate {
-
-    func retweet(tweet: Tweet) {
-        self.retweetButton.isHighlighted = true
-        self.tweet.retweetCount! += 1
-        self.retweetLabel.text = "\(self.tweet.retweetCount!)"
-        self.tweet = tweet
-    }
     
-    func unretweet(tweet: Tweet) {
-        self.retweetButton.isHighlighted = false
-        self.tweet.retweetCount! -= 1
+    func updateEngagement() {
+        self.retweetButton.isHighlighted = self.tweet.retweeted!
         self.retweetLabel.text = "\(self.tweet.retweetCount!)"
-        self.tweet = tweet
     }
     
     func favorite() {
