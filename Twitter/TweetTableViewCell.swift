@@ -25,8 +25,6 @@ class TweetTableViewCell: UITableViewCell {
     func updateLabels() {
         tweetLabel.text = tweet.text
         profileImageView.setImageWith(tweet.profileURL!)
-        profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2
-        profileImageView.clipsToBounds = true
         nameLabel.text = tweet.username
         timestampLabel.text = tweet.timeAgoSinceDate()
         handleLabel.text = "@\(tweet.screenName!)"

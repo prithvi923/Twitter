@@ -14,7 +14,7 @@ class TweetsViewController: UIViewController {
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
     @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userImageView: ProfileImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,6 @@ class TweetsViewController: UIViewController {
         client.homeTimeline()
         
         userImageView.setImageWith((User.current?.profileURL)!)
-        userImageView.layer.cornerRadius = self.userImageView.frame.size.width/2
-        userImageView.clipsToBounds = true
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)

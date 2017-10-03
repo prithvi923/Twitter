@@ -21,6 +21,7 @@
 		DCD2BE7E1F7F87B000FDADD0 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE7D1F7F87B000FDADD0 /* ComposeViewController.swift */; };
 		DCD2BE801F80871D00FDADD0 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE7F1F80871D00FDADD0 /* TweetDetailViewController.swift */; };
 		DCD2BE821F81F23100FDADD0 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */; };
+		DCD2BE841F8360E100FDADD0 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD2BE831F8360E100FDADD0 /* ProfileImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		DCD2BE7D1F7F87B000FDADD0 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		DCD2BE7F1F80871D00FDADD0 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
+		DCD2BE831F8360E100FDADD0 /* ProfileImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			children = (
 				DCD2BE7B1F7F41D400FDADD0 /* TweetTableViewCell.swift */,
 				DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */,
+				DCD2BE831F8360E100FDADD0 /* ProfileImageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				DCD2BE6E1F7E101200FDADD0 /* LoginViewController.swift in Sources */,
 				DCD2BE801F80871D00FDADD0 /* TweetDetailViewController.swift in Sources */,
 				DCD2BE791F7F342400FDADD0 /* TweetsViewController.swift in Sources */,
+				DCD2BE841F8360E100FDADD0 /* ProfileImageView.swift in Sources */,
 				DCD2BE7E1F7F87B000FDADD0 /* ComposeViewController.swift in Sources */,
 				DCD2BE5C1F7DEAB100FDADD0 /* AppDelegate.swift in Sources */,
 				DCD2BE731F7E1D0600FDADD0 /* User.swift in Sources */,

@@ -29,8 +29,6 @@ class TweetDetailViewController: UIViewController {
         screenNameLabel.text = "@\(tweet.screenName!)"
         tweetLabel.text = tweet.text
         profileImageView.setImageWith(tweet.profileURL!)
-        profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width/2
-        profileImageView.clipsToBounds = true
         timestampLabel.text = tweet.detailTime()
         retweetLabel.text = "\(tweet.retweetCount!)"
         favoritesLabel.text = "\(tweet.favoriteCount!)"
