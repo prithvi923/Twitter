@@ -9,27 +9,20 @@
 import UIKit
 import BDBOAuth1Manager
 
-class LoginViewController: UIViewController, LoginDelegate {
+class LoginViewController: UIViewController {
     
     private let client = TwitterClient.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         client.loginDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func loginPressed(_ sender: Any) {
         client.login()
     }
-    
-    func loggedIn() {
-        self.performSegue(withIdentifier: "loginSegue", sender: nil)
-    }
-
 }
