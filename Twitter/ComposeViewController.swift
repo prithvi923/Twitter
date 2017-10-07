@@ -51,13 +51,13 @@ class ComposeViewController: UIViewController {
         let client = TwitterClient.sharedInstance
         if let tweet = replyToTweet {
             let completeStatus = "@\(tweet.screenName!) \(textView.text!)"
-            client?.reply(to: tweet, withStatus: completeStatus, success: {
+            client.reply(to: tweet, withStatus: completeStatus, success: {
                 self.dismiss(animated: true, completion: nil)
             }, failure: { (error: Error) in
                 print("error: \(error.localizedDescription)")
             })
         } else {
-            client?.tweet(textView.text, success: { (tweet: Tweet) in
+            client.tweet(textView.text, success: { (tweet: Tweet) in
                 self.newTweet = tweet
                 self.performSegue(withIdentifier: "unwindFromComposeToTweetVC", sender: self)
             }, failure: { (error: Error) in

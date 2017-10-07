@@ -14,7 +14,7 @@ class TweetsViewController: UIViewController {
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
     @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userImageView: ProfileImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +24,12 @@ class TweetsViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        TwitterClient.sharedInstance?.homeTimeline( success: { (tweets: [Tweet]) in
-            self.tweets = tweets
-            self.tableView.reloadData()
-        }, failure: { (error: Error) in
-            print("error: \(error.localizedDescription)")
-        })
+        let client = TwitterClient.sharedInstance
+        client.homeDelegate = self
+        
+        client.homeTimeline()
         
         userImageView.setImageWith((User.current?.profileURL)!)
-        userImageView.layer.cornerRadius = self.userImageView.frame.size.width/2
-        userImageView.clipsToBounds = true
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
@@ -55,16 +51,12 @@ class TweetsViewController: UIViewController {
     }
     
     @IBAction func logoutPressed(_ sender: Any) {
-        TwitterClient.sharedInstance?.logout()
+        TwitterClient.sharedInstance.logout()
     }
     
     func pullToRefresh(_ refreshControl: UIRefreshControl) {
-        TwitterClient.sharedInstance?.newerTweets(than: tweets[0].id!, success: { (tweets: [Tweet]) in
-            self.tweets.insert(contentsOf: tweets, at: 0)
-            self.tableView.reloadData()
+        TwitterClient.sharedInstance.newerTweets(than: tweets[0].id!, completion: {
             refreshControl.endRefreshing()
-        }, failure: { (error: Error) in
-            print("error: \(error.localizedDescription)")
         })
     }
     
@@ -114,17 +106,29 @@ extension TweetsViewController: UITableViewDelegate {
                 loadingMoreView?.frame = frame
                 loadingMoreView!.startAnimating()
             
-                TwitterClient.sharedInstance?.olderTweets(than: tweets.last!.id!, success: { (tweets: [Tweet]) in
-                    self.tweets.append(contentsOf: tweets)
-                    self.tableView.reloadData()
-                    self.loadingMoreView!.stopAnimating()
-                    self.isMoreDataLoading = false
-                }, failure: { (error: Error) in
-                    print("error: \(error.localizedDescription)")
+                TwitterClient.sharedInstance.olderTweets(than: tweets.last!.id!, completion: {
                     self.loadingMoreView!.stopAnimating()
                     self.isMoreDataLoading = false
                 })
             }
         }
+    }
+}
+
+extension TweetsViewController: HomeTimelineDelegate {
+    
+    func current(tweets: [Tweet]) {
+        self.tweets = tweets
+        self.tableView.reloadData()
+    }
+    
+    func new(tweets: [Tweet]) {
+        self.tweets.insert(contentsOf: tweets, at: 0)
+        self.tableView.reloadData()
+    }
+    
+    func old(tweets: [Tweet]) {
+        self.tweets.append(contentsOf: tweets)
+        self.tableView.reloadData()
     }
 }
