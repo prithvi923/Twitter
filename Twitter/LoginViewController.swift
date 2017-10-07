@@ -9,12 +9,14 @@
 import UIKit
 import BDBOAuth1Manager
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginDelegate {
+    
+    private let client = TwitterClient.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        client.loginDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,20 +25,11 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: Any) {
-        TwitterClient.sharedInstance.login(success: {
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-        }, failure: { (error: Error) in
-            print("Error: \(error.localizedDescription)")
-        })
+        client.login()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func loggedIn() {
+        self.performSegue(withIdentifier: "loginSegue", sender: nil)
     }
-    */
 
 }

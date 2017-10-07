@@ -14,7 +14,9 @@ class TwitterClient: BDBOAuth1SessionManager {
     static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "Oxs5m9Odq8TDDuuN5Rs5cYCN3", consumerSecret: "hbjBljTnrFc70j5LA0w7q94h6uVt65VCYAPht3fuNysYCkDsoy")!
     
     var loginSuccess: (() -> ())?
-    var loginFailure: ((Error) -> ())?
+    var loginFailure: ((Error) -> ()) = { (error: Error) in
+        print("error: \(error.localizedDescription)")
+    }
     
     let errorPrinter: ((URLSessionDataTask?, Error) -> ()) = { (task: URLSessionDataTask?, error: Error) in
         print("error: \(error.localizedDescription)")
@@ -22,17 +24,15 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     var homeDelegate: HomeTimelineDelegate!
     var tweetEngageDelegate: TweetEngageDelegate!
+    var loginDelegate: LoginDelegate!
     
-    func login(success: @escaping () -> Void, failure: @escaping (Error) -> ()) {
-        loginSuccess = success
-        loginFailure = failure
-        
+    func login() {
         TwitterClient.sharedInstance.deauthorize()
         TwitterClient.sharedInstance.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "twitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) in
             let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")!
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }, failure: { (error: Error?) in
-            self.loginFailure?(error!)
+            self.loginFailure(error!)
         })
     }
     
@@ -52,13 +52,13 @@ class TwitterClient: BDBOAuth1SessionManager {
             success: { (access_token: BDBOAuth1Credential?) in
                 self.verifyCredentials(success: { (user: User) in
                     User.current = user
-                    self.loginSuccess?()
+                    self.loginDelegate.loggedIn()
                 }, failure: { (error: Error) in
-                    self.loginFailure?(error)
+                    self.loginFailure(error)
                 })
             },
             failure: { (error: Error?) in
-                self.loginFailure?(error!)
+                self.loginFailure(error!)
             })
     }
     
@@ -177,10 +177,4 @@ class TwitterClient: BDBOAuth1SessionManager {
                 failure(error)
             })
     }
-}
-
-protocol HomeTimelineDelegate {
-    func current(tweets: [Tweet])
-    func new(tweets: [Tweet])
-    func old(tweets: [Tweet])
 }
