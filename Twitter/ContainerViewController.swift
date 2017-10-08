@@ -16,7 +16,7 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var contentViewLeftMargingConstraint: NSLayoutConstraint!
     var originalLeftMargin: CGFloat!
     
-    var menuViewController: UIViewController! {
+    var menuViewController: MenuViewController! {
         didSet {
             menuViewController.willMove(toParentViewController: self)
             menuView.addSubview(menuViewController.view)
@@ -36,6 +36,7 @@ class ContainerViewController: UIViewController {
             contentViewController.willMove(toParentViewController: self)
             contentView.addSubview(contentViewController.view)
             contentViewController.didMove(toParentViewController: self)
+            animateMenu(to: false)
         }
     }
     
@@ -43,9 +44,8 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController")
-        
-        contentViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+        menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        menuViewController.containerViewController = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,22 +62,26 @@ class ContainerViewController: UIViewController {
         } else if sender.state == .changed {
             contentViewLeftMargingConstraint.constant = originalLeftMargin + translation.x
         } else if sender.state == .ended {
-            var newConstant: CGFloat = 0.0
-            if velocity.x > 0 {
-                newConstant = 2/3 * view.frame.width
-            } else {
-                newConstant = 0
-            }
-            UIView.animate(withDuration: 1,
-                           delay: 0,
-                           usingSpringWithDamping: 0.8,
-                           initialSpringVelocity: 3,
-                           options: [],
-                           animations: {
-                            self.contentViewLeftMargingConstraint.constant = newConstant
-                            self.view.layoutIfNeeded()
-                            },
-                           completion: nil)
+            animateMenu(to: velocity.x >= 0)
         }
+    }
+    
+    func animateMenu(to: Bool) {
+        var newConstant: CGFloat = 0.0
+        if to {
+            newConstant = 2/3 * view.frame.width
+        } else {
+            newConstant = 0
+        }
+        UIView.animate(withDuration: 1,
+                       delay: 0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 3,
+                       options: [],
+                       animations: {
+                        self.contentViewLeftMargingConstraint.constant = newConstant
+                        self.view.layoutIfNeeded()
+        },
+                       completion: nil)
     }
 }

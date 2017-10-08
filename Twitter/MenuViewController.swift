@@ -10,26 +10,32 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    let menuItems = ["Home", "Profile", "Mentions"]
+    var menuItemControllers: [UIViewController]!
+    
+    var containerViewController: ContainerViewController! {
+        didSet {
+            containerViewController.contentViewController = menuItemControllers[0]
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 150
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        menuItemControllers = []
+        menuItemControllers.append(storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController"))
+        menuItemControllers.append(storyboard.instantiateViewController(withIdentifier: "profileViewController"))
+        menuItemControllers.append(storyboard.instantiateViewController(withIdentifier: "mentionsViewController"))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated.s
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
