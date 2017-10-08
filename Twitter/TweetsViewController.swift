@@ -17,6 +17,7 @@ class TweetsViewController: UIViewController {
     @IBOutlet weak var userImageView: ProfileImageView!
     
     var isProfile: Bool = false
+    var client = TwitterClient.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +27,9 @@ class TweetsViewController: UIViewController {
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        let client = TwitterClient.sharedInstance
-        
         if isProfile {
-            client.homeDelegate = self
-            client.homeTimeline()
+            client.userDelegate = self
+            client.userTimeline()
         } else {
             client.homeDelegate = self
             client.homeTimeline()
@@ -62,7 +61,7 @@ class TweetsViewController: UIViewController {
     }
     
     func pullToRefresh(_ refreshControl: UIRefreshControl) {
-        TwitterClient.sharedInstance.newerTweets(than: tweets[0].id!, completion: {
+        client.newerTweets(than: tweets[0].id!, completion: {
             refreshControl.endRefreshing()
         })
     }
@@ -124,7 +123,7 @@ extension TweetsViewController: UITableViewDelegate {
                 loadingMoreView?.frame = frame
                 loadingMoreView!.startAnimating()
             
-                TwitterClient.sharedInstance.olderTweets(than: tweets.last!.id!, completion: {
+                self.client.olderTweets(than: tweets.last!.id!, completion: {
                     self.loadingMoreView!.stopAnimating()
                     self.isMoreDataLoading = false
                 })
