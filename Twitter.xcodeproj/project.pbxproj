@@ -12,6 +12,7 @@
 		DC1C03D31F89FB79004AAFB0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C03D21F89FB79004AAFB0 /* ProfileViewController.swift */; };
 		DC1C03D61F89FB9C004AAFB0 /* MenuViewController+TableViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C03D51F89FB9C004AAFB0 /* MenuViewController+TableViewDatasource.swift */; };
 		DC1C03D81F89FC05004AAFB0 /* MenuViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C03D71F89FC05004AAFB0 /* MenuViewController+TableViewDelegate.swift */; };
+		DC1C03DA1F8A9451004AAFB0 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C03D91F8A9451004AAFB0 /* ProfileTableViewCell.swift */; };
 		DCCF59D71F899BF30036AAB2 /* LoginViewController+LoginDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCF59D61F899BF30036AAB2 /* LoginViewController+LoginDelegate.swift */; };
 		DCCF59D91F899ED10036AAB2 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCF59D81F899ED10036AAB2 /* ContainerViewController.swift */; };
 		DCCF59DB1F89ABED0036AAB2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCF59DA1F89ABED0036AAB2 /* MenuViewController.swift */; };
@@ -42,6 +43,7 @@
 		DC1C03D21F89FB79004AAFB0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		DC1C03D51F89FB9C004AAFB0 /* MenuViewController+TableViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuViewController+TableViewDatasource.swift"; sourceTree = "<group>"; };
 		DC1C03D71F89FC05004AAFB0 /* MenuViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
+		DC1C03D91F8A9451004AAFB0 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		DCCF59D61F899BF30036AAB2 /* LoginViewController+LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+LoginDelegate.swift"; sourceTree = "<group>"; };
 		DCCF59D81F899ED10036AAB2 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		DCCF59DA1F89ABED0036AAB2 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				DC1C03D01F89F5B1004AAFB0 /* MenuTableViewCell.swift */,
 				DCD2BE811F81F23100FDADD0 /* InfiniteScrollActivityView.swift */,
 				DCD2BE831F8360E100FDADD0 /* ProfileImageView.swift */,
+				DC1C03D91F8A9451004AAFB0 /* ProfileTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				DCD2BE821F81F23100FDADD0 /* InfiniteScrollActivityView.swift in Sources */,
 				DCD2BE771F7E204200FDADD0 /* TwitterClient.swift in Sources */,
 				DCD2BE6E1F7E101200FDADD0 /* LoginViewController.swift in Sources */,
+				DC1C03DA1F8A9451004AAFB0 /* ProfileTableViewCell.swift in Sources */,
 				DCD2BE861F83644F00FDADD0 /* TweetDetailViewController+TweetEngageDelegate.swift in Sources */,
 				DCD2BE801F80871D00FDADD0 /* TweetDetailViewController.swift in Sources */,
 				DCD2BE791F7F342400FDADD0 /* TweetsViewController.swift in Sources */,

@@ -30,7 +30,10 @@ class MenuViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         menuItemControllers = []
         menuItemControllers.append(storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController"))
-        menuItemControllers.append(storyboard.instantiateViewController(withIdentifier: "profileViewController"))
+        let profileNavVC = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        let profileVC = profileNavVC.viewControllers.first as! TweetsViewController
+        profileVC.isProfile = true
+        menuItemControllers.append(profileNavVC)
         menuItemControllers.append(storyboard.instantiateViewController(withIdentifier: "mentionsViewController"))
     }
 

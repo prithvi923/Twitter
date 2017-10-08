@@ -16,6 +16,8 @@ class TweetsViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var userImageView: ProfileImageView!
     
+    var isProfile: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +27,14 @@ class TweetsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         let client = TwitterClient.sharedInstance
-        client.homeDelegate = self
         
-        client.homeTimeline()
+        if isProfile {
+            client.homeDelegate = self
+            client.homeTimeline()
+        } else {
+            client.homeDelegate = self
+            client.homeTimeline()
+        }
         
         userImageView.setImageWith((User.current?.profileURL)!)
         
@@ -78,14 +85,25 @@ class TweetsViewController: UIViewController {
 extension TweetsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if isProfile {
+            return 2
+        }
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isProfile && section == 0 {
+            return 1
+        }
         return tweets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (isProfile && indexPath.section == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
+            cell.user = User.current
+            return cell
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell
         cell.tweet = tweets[indexPath.row]
         return cell
