@@ -17,6 +17,7 @@ class TweetsViewController: UIViewController {
     @IBOutlet weak var userImageView: ProfileImageView!
     
     var isProfile: Bool = false
+    var isMentions: Bool = false
     var client = TwitterClient.sharedInstance
     
     override func viewDidLoad() {
@@ -30,6 +31,9 @@ class TweetsViewController: UIViewController {
         if isProfile {
             client.userDelegate = self
             client.userTimeline()
+        } else if isMentions {
+            client.mentionsDelegate = self
+            client.mentionsTimeline()
         } else {
             client.homeDelegate = self
             client.homeTimeline()

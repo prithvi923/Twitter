@@ -26,6 +26,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     var tweetEngageDelegate: TweetEngageDelegate!
     var loginDelegate: LoginDelegate!
     var userDelegate: HomeTimelineDelegate!
+    var mentionsDelegate: HomeTimelineDelegate!
     
     func login() {
         TwitterClient.sharedInstance.deauthorize()
@@ -80,6 +81,16 @@ class TwitterClient: BDBOAuth1SessionManager {
             success: { (task: URLSessionDataTask, response: Any?) in
                 let tweetsDictionary = response as! [NSDictionary]
                 self.userDelegate.current(tweets: Tweet.tweets(tweetsDictionary))
+        }, failure: errorPrinter)
+    }
+    
+    func mentionsTimeline() {
+        get("1.1/statuses/mentions_timeline.json",
+            parameters: nil,
+            progress: nil,
+            success: { (task: URLSessionDataTask, response: Any?) in
+                let tweetsDictionary = response as! [NSDictionary]
+                self.mentionsDelegate.current(tweets: Tweet.tweets(tweetsDictionary))
         }, failure: errorPrinter)
     }
     
