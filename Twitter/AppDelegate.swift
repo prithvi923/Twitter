@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
         if User.current != nil {
-            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            let vc = storyboard.instantiateViewController(withIdentifier: "ContainerViewController")
             window?.rootViewController = vc
         }
         
