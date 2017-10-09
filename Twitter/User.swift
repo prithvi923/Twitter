@@ -27,7 +27,7 @@ class User: NSObject {
         if let profile_url = user["profile_image_url_https"] {
             profileURL = URL(string: profile_url as! String)!
         }
-        if let background_url = user["profile_background_image_url_https"] {
+        if let background_url = user["profile_banner_url"] {
             backgroundURL = URL(string: background_url as! String)!
         }
         followerCount = user["followers_count"] as? Int
