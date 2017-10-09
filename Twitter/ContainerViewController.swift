@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var contentView: UIView!

@@ -18,6 +18,9 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followerCountLabel: UILabel!
+    @IBOutlet weak var descriptionView: UIView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     var user: User! {
         didSet {
@@ -44,6 +47,24 @@ class ProfileTableViewCell: UITableViewCell {
         tweetCountLabel.text = "\(user.tweetCount!)"
         followingCountLabel.text = "\(user.followingCount!)"
         followerCountLabel.text = "\(user.followerCount!)"
+        descriptionLabel.text = user.tagline
+        pageControl.currentPage = 0
+    }
+    
+    func page(toRight: Bool) {
+        var newAlpha: CGFloat!
+        var newPage: Int!
+        if toRight {
+            newAlpha = 0
+            newPage = 0
+        } else {
+            newAlpha = 0.7
+            newPage = 1
+        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.descriptionView.alpha = newAlpha
+            self.pageControl.currentPage = newPage
+        })
     }
 
 }

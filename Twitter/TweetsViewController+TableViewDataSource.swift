@@ -32,6 +32,7 @@ extension TweetsViewController: UITableViewDataSource {
             } else {
                 cell.user = User.current
             }
+            profileCell = cell
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell

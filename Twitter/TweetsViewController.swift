@@ -20,6 +20,8 @@ class TweetsViewController: UIViewController {
     var isMentions: Bool = false
     var client = TwitterClient.sharedInstance
     var user: User!
+    var originalAlpha: CGFloat!
+    var profileCell: ProfileTableViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +105,14 @@ class TweetsViewController: UIViewController {
         profileVC.isProfile = true
         profileVC.user = user
         navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    @IBAction func swipeHeaderImage(_ sender: UIPanGestureRecognizer) {
+        let velocity = sender.velocity(in: view)
+        
+        if sender.state == .ended {
+            profileCell.page(toRight: velocity.x > 0)
+        }
     }
     
 }
