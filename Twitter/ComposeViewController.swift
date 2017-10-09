@@ -47,7 +47,7 @@ class ComposeViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func tweet() {
+    @objc func tweet() {
         let client = TwitterClient.sharedInstance
         if let tweet = replyToTweet {
             let completeStatus = "@\(tweet.user!.screenName!) \(textView.text!)"

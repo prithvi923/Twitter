@@ -67,7 +67,7 @@ class TweetsViewController: UIViewController {
         tableView.contentInset = insets
     }
     
-    func close() {
+    @objc func close() {
         navigationController?.popViewController(animated: true)
     }
 
@@ -80,7 +80,7 @@ class TweetsViewController: UIViewController {
         TwitterClient.sharedInstance.logout()
     }
     
-    func pullToRefresh(_ refreshControl: UIRefreshControl) {
+    @objc func pullToRefresh(_ refreshControl: UIRefreshControl) {
         client.newerTweets(than: tweets[0].id!, completion: {
             refreshControl.endRefreshing()
         })

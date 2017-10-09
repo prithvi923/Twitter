@@ -37,7 +37,7 @@ class TweetTableViewCell: UITableViewCell {
         handleLabel.text = "@\(tweet.user!.screenName!)"
     }
     
-    func showProfile() {
+    @objc func showProfile() {
         delegate.pushProfile(user: tweet.user!)
     }
     
