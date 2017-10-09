@@ -61,7 +61,7 @@
         <!--Home-->
         <scene sceneID="Zku-aJ-X7y">
             <objects>
-                <viewController id="6qX-YL-JPD" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TweetsViewController" id="6qX-YL-JPD" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ds4-O0-KKx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -513,7 +513,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTf-wc-8Gp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ZtR-41-kqF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3180" y="679"/>
+            <point key="canvasLocation" x="3519" y="547"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mXZ-Wd-Uoh">

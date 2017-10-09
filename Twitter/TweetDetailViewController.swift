@@ -25,10 +25,10 @@ class TweetDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameLabel.text = tweet.username
-        screenNameLabel.text = "@\(tweet.screenName!)"
+        nameLabel.text = tweet.user!.name
+        screenNameLabel.text = "@\(tweet.user!.screenName!)"
         tweetLabel.text = tweet.text
-        profileImageView.setImageWith(tweet.profileURL!)
+        profileImageView.setImageWith(tweet.user!.profileURL!)
         timestampLabel.text = tweet.detailTime()
         retweetLabel.text = "\(tweet.retweetCount!)"
         favoritesLabel.text = "\(tweet.favoriteCount!)"

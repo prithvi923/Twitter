@@ -16,6 +16,8 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
     
+    var delegate: TweetsViewController!
+    
     var tweet: Tweet! {
         didSet {
             updateLabels()
@@ -24,10 +26,19 @@ class TweetTableViewCell: UITableViewCell {
     
     func updateLabels() {
         tweetLabel.text = tweet.text
-        profileImageView.setImageWith(tweet.profileURL!)
-        nameLabel.text = tweet.username
+        profileImageView.setImageWith(tweet.user!.profileURL!)
+        
+        profileImageView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showProfile))
+        profileImageView.addGestureRecognizer(tapGesture)
+        
+        nameLabel.text = tweet.user!.name
         timestampLabel.text = tweet.timeAgoSinceDate()
-        handleLabel.text = "@\(tweet.screenName!)"
+        handleLabel.text = "@\(tweet.user!.screenName!)"
+    }
+    
+    func showProfile() {
+        delegate.pushProfile(user: tweet.user!)
     }
     
     override func awakeFromNib() {

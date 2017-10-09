@@ -50,7 +50,7 @@ class ComposeViewController: UIViewController {
     func tweet() {
         let client = TwitterClient.sharedInstance
         if let tweet = replyToTweet {
-            let completeStatus = "@\(tweet.screenName!) \(textView.text!)"
+            let completeStatus = "@\(tweet.user!.screenName!) \(textView.text!)"
             client.reply(to: tweet, withStatus: completeStatus, success: {
                 self.dismiss(animated: true, completion: nil)
             }, failure: { (error: Error) in

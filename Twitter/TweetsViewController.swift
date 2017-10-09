@@ -19,6 +19,7 @@ class TweetsViewController: UIViewController {
     var isProfile: Bool = false
     var isMentions: Bool = false
     var client = TwitterClient.sharedInstance
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,11 @@ class TweetsViewController: UIViewController {
         
         if isProfile {
             client.userDelegate = self
-            client.userTimeline()
+            if let user = user {
+                client.userTimeline(user: user)
+            } else {
+                client.userTimeline(user: User.current!)
+            }
         } else if isMentions {
             client.mentionsDelegate = self
             client.mentionsTimeline()
@@ -39,7 +44,12 @@ class TweetsViewController: UIViewController {
             client.homeTimeline()
         }
         
-        userImageView.setImageWith((User.current?.profileURL)!)
+        if user != nil {
+            let backButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(close))
+            navigationItem.leftBarButtonItem = backButton
+        } else {
+            userImageView.setImageWith((User.current?.profileURL)!)
+        }
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
@@ -53,6 +63,10 @@ class TweetsViewController: UIViewController {
         var insets = tableView.contentInset
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         tableView.contentInset = insets
+    }
+    
+    func close() {
+        navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +97,14 @@ class TweetsViewController: UIViewController {
         
     }
     
+    func pushProfile(user: User) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "TweetsViewController") as! TweetsViewController
+        profileVC.isProfile = true
+        profileVC.user = user
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
 }
 
 extension TweetsViewController: UITableViewDataSource {
@@ -104,11 +126,16 @@ extension TweetsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (isProfile && indexPath.section == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
-            cell.user = User.current
+            if user != nil {
+                cell.user = user
+            } else {
+                cell.user = User.current
+            }
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell") as! TweetTableViewCell
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
         return cell
     }
 }
