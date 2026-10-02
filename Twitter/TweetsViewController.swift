@@ -30,6 +30,8 @@ class TweetsViewController: UIViewController {
         tableView.dataSource = self
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        let nib = UINib.init(nibName: "ProfileTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ProfileCell")
         
         if isProfile {
             client.userDelegate = self
